@@ -1,19 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @club.name %>
-</p>
+<div class="container">
+  <p><strong>Name:</strong> <%= @club.name %></p>
+  <p><strong>Description:</strong> <%= @club.description %></p>
+  <p><strong>Members:</strong> <%= @club.members %></p>
+  <%= link_to 'Edit', edit_club_path(@club) %> |
+  <%= link_to 'Back', clubs_path %>
+</div>
+<br>
+<div class="container">
+  <% @club.try(:posts).each do |post| %>
+    <strong><%= post.user.email %></strong><br>
+    <%= post.content %><br>
+  <% end %>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @club.description %>
-</p>
-
-<p>
-  <strong>Members:</strong>
-  <%= @club.members %>
-</p>
-
-<%= link_to 'Edit', edit_club_path(@club) %> |
-<%= link_to 'Back', clubs_path %>
+<div class="container">
+    <%= form_for @club.posts.build, action: posts_path, method: 'post' do |f| %>
+      <%= f.hidden_field :club_id, value: @club.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.label "Add Comment" %>
+      <%= f.text_area :content %>
+      <%= f.submit %>
+    <% end %>
+</div>
