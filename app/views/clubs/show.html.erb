@@ -4,24 +4,27 @@
   <p><strong>Name:</strong> <%= @club.name %></p>
   <p><strong>Description:</strong> <%= @club.description %></p>
   <p><strong>Members:</strong> <%= @club.members %></p>
-  <%= link_to 'Edit', edit_club_path(@club) %> |
+  <%= link_to 'Edit Club', edit_club_path(@club) %> |
   <%= link_to 'Back', clubs_path %>
 </div>
-<br>
+<br><br>
+<strong>Comments:</strong>
+<br><br>
 <div class="container">
   <% @club.try(:posts).each do |post| %>
     <strong><%= post.user.email %></strong><br>
     <%= post.content %><br>
+    <%= link_to 'Edit', edit_post_path(post) %>
+    <%= link_to "delete", post_path(post.id), method: "DELETE" %>
+    <br><br>
   <% end %>
 </div>
-
+<br><br>
+<strong>Add a new Post:</strong>
+<br><br>
 <div class="container">
     <%= form_for @club.posts.build, action: posts_path, method: 'post' do |f| %>
       <%= f.hidden_field :club_id, value: @club.id %>
-      <% if user_signed_in? %>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-      <% end %>
-      <%= f.label "Add Post" %>
       <%= f.text_area :content %>
       <%= f.submit %>
     <% end %>

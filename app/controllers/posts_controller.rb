@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
   #before_action :authenticate_user!
-  skip_load_and_authorize_resource
+  #skip_load_and_authorize_resource
 
   def index
     @posts = Post.all
@@ -16,12 +17,16 @@ class PostsController < ApplicationController
     end
   end
 
+  def new
+    @post = Post.new
+  end
+
   def edit
   end
 
   def update
     if @post.update(post_params)
-      redirect_to user_path(@post.user), notice: "Your post successfully updated!"
+      redirect_to club_path(@post.club), notice: "Your post successfully updated!"
     else
       render :edit
     end
@@ -32,10 +37,14 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to clubs_path, notice: "Your post was removed."
+    redirect_to club_path(@post.club), notice: "Your post successfuly deleted!"
   end
 
   private
+    def set_post
+      @post = Post.find(params[:id])
+    end
+
     def post_params
       params.require(:post).permit(:content, :club_id, :user_id)
     end

@@ -1,11 +1,6 @@
-<h2>Edit Post</h2>
+<h1>Editing Post</h1>
 
-<%= form_for @post do |f| %>
-  <%= f.hidden_field :club_id, value: @post.club_id %>
-  <% if user_signed_in? %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-  <% end %>
-  <%= f.label "Edit your comment" %>
-  <%= f.text_area :content %>
-  <%= f.submit %>
-<% end %>
+<%= render 'form' %>
+
+<%= link_to 'Show', @post %> |
+<%= link_to 'Back', club_path(@post.club) %>
