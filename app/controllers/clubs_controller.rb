@@ -2,7 +2,11 @@ class ClubsController < ApplicationController
   before_action :set_club, only: [:show, :edit, :update, :destroy]
 
   def index
-    @clubs = Club.all
+    if params[:user_id]
+      @clubs = User.find(params[:user_id]).clubs
+    else
+      @clubs = Club.all
+    end
   end
 
   def show
@@ -17,28 +21,19 @@ class ClubsController < ApplicationController
   end
 
   def create
-    @club = Club.new(club_params)
-
-    respond_to do |format|
-      if @club.save
-        format.html { redirect_to @club, notice: 'Club was successfully created.' }
-        format.json { render :show, status: :created, location: @club }
-      else
-        format.html { render :new }
-        format.json { render json: @club.errors, status: :unprocessable_entity }
-      end
+    @club = Club.create(club_params)
+    if @club.save
+      redirect_to @club
+    else
+      render new_club_path
     end
   end
 
   def update
-    respond_to do |format|
-      if @club.update(club_params)
-        format.html { redirect_to @club, notice: 'Club was successfully updated.' }
-        format.json { render :show, status: :ok, location: @club }
-      else
-        format.html { render :edit }
-        format.json { render json: @club.errors, status: :unprocessable_entity }
-      end
+    if @club.update(club_params)
+      redirect_to @club, notice: "Club updated"
+    else
+      render :edit
     end
   end
 
@@ -56,6 +51,6 @@ class ClubsController < ApplicationController
     end
 
     def club_params
-      params.require(:club).permit(:name, :description, :members)
+      params.require(:club).permit(:name, :description, :members, :user_id)
     end
 end

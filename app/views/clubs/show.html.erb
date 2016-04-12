@@ -18,8 +18,10 @@
 <div class="container">
     <%= form_for @club.posts.build, action: posts_path, method: 'post' do |f| %>
       <%= f.hidden_field :club_id, value: @club.id %>
-      <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.label "Add Comment" %>
+      <% if user_signed_in? %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+      <% end %>
+      <%= f.label "Add Post" %>
       <%= f.text_area :content %>
       <%= f.submit %>
     <% end %>
