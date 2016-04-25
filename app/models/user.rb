@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:google_oauth2]
 
-  has_many :posts, dependent: :destroy
+  has_many :posts, dependent: :destroy #deletes posts if user is deleted
   has_many :clubs, through: :posts
 
   def self.from_omniauth(access_token)
@@ -17,9 +17,5 @@ class User < ActiveRecord::Base
         password: Devise.friendly_token[0,20])
       end
     user
-  end
-
-  def name_without_email
-    email.split("@").first
   end
 end

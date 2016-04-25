@@ -47,6 +47,10 @@ div {
   display: table;
 }
 
+#navcontainer ul li a {
+  text-decoration: none; 
+}
+
 #error_explanation {
   width: 450px;
   border: 2px solid red;

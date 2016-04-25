@@ -10,6 +10,49 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+@import "bootstrap";
+
+#navcontainer {
+  background-color: #c5d5cb;
+  padding: 2em;
+}
+
+body {
+  background-color: #9fa8a3;
+  color: #1d2120;
+}
+
+input {
+  background-color: #e3e0cf;
+}
+
+
+a {
+  color: #7d4627;
+}
+
+textarea {
+  background-color: #e3e0cf;
+}
+
+.info-container {
+  position: fixed;
+  padding: none;
+  margin-left: 5em;
+  padding: 2em;
+}
+
+.posts-container {
+  float: right;
+  padding: 2em;
+  margin-right: 19em;
+}
+
+.new-post-container {
+  position: fixed;
+  top: 20em;
+  left: 2em;
+  padding: 2em;
+}
