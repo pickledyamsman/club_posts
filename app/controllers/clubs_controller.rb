@@ -1,5 +1,6 @@
 class ClubsController < ApplicationController
   before_action :set_club, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def index
     @clubs = Club.all
@@ -55,6 +56,12 @@ class ClubsController < ApplicationController
     end
 
     def club_params
-      params.require(:club).permit(:name, :description, :members)
+      params.require(:club).permit(
+        :name, 
+        :description, 
+        :members,
+        posts_attributes: [
+          :title, :content
+        ])
     end
 end

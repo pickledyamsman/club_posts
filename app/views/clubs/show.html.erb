@@ -10,9 +10,10 @@
 
 <div class="posts-container">
   <strong>Posts:</strong><br><br>
-  <% @club.try(:posts).each do |post| %>
-    <strong><%= post.user.email %></strong><br>
-    <%= post.content %><br>
+  <% @club.posts.each do |post| %>
+    <h5><%= post.title %></h5>
+    <p><%= post.content %></p>
+    <h6>Posted by: <%= post.user.email %></h6>
     <%= link_to 'Edit', edit_post_path(post) %>
     <%= link_to "delete", post_path(post.id), method: "DELETE" %>
     <br><br>
@@ -20,10 +21,15 @@
 </div>
 
 <div class="new-post-container">
-  <strong>Add a new Post:</strong><br><br>
+  <strong>Add a new Post:</strong><br>
     <%= form_for @club.posts.build, action: posts_path, method: 'post' do |f| %>
       <%= f.hidden_field :club_id, value: @club.id %>
-      <%= f.text_area :content %>
+      <%= fields_for :posts do |p| %>
+        <h6>Title:</h6>
+        <%= p.text_field :title,  placeholder: "Add a title." %><br>
+        <h6>Content:</h6>
+        <%= p.text_area :body, placeholder: "Add some content." %>
+      <% end %><br>
       <%= f.submit %>
     <% end %>
 </div>
