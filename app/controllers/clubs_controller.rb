@@ -60,8 +60,7 @@ class ClubsController < ApplicationController
         :name, 
         :description, 
         :members,
-        posts_attributes: [
-          :title, :content
-        ])
+        :type_id
+        )
     end
 end
