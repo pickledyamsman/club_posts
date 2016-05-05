@@ -1,6 +1,6 @@
 class Club < ActiveRecord::Base
   has_many :posts, dependent: :destroy #deletes posts if club is deleted
-  has_many :users, through: :posts
+  belongs_to :user
 
   accepts_nested_attributes_for :posts
 

@@ -24,7 +24,7 @@
   <strong>Add a new Post:</strong><br>
     <%= form_for @club.posts.build, action: posts_path, method: 'post' do |f| %>
       <%= f.hidden_field :club_id, value: @club.id %>
-      <%= fields_for :posts do |p| %>
+      <%= f.fields_for :posts do |p| %>
         <h6>Title:</h6>
         <%= p.text_field :title,  placeholder: "Add a title." %><br>
         <h6>Content:</h6>

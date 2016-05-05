@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:google_oauth2]
 
   has_many :posts, dependent: :destroy #deletes posts if user is deleted
-  has_many :clubs, through: :posts
+  has_many :clubs
 
   def self.from_omniauth(access_token)
     data = access_token.info
