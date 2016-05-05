@@ -3,7 +3,12 @@
 <div class="info-container">
   <p><strong>Name:</strong> <%= @club.name %></p>
   <p><strong>Description:</strong> <%= @club.description %></p>
-  <p><strong>Members:</strong> <%= @club.members %></p>
+  <p><strong>Number of Members:</strong> <%= @club.member_number %></p>
+  <p><strong>Club Type:</strong> <%= @club.type.name %></p>
+  <p><strong>Members:</strong></p>
+  <% @club.members.each do |member| %>
+    <%= display_member(member) %>
+  <% end %>
   <%= link_to 'Edit Club', edit_club_path(@club) %> |
   <%= link_to 'Back', clubs_path %>
 </div>

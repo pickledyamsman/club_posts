@@ -22,18 +22,20 @@
   </div>
 
   <div class="field">
-    <%= f.label :members %><br>
-    <%= f.number_field :members %>
-  </div>
-
-  <%= f.label :type_id %>
-  <%= f.collection_select :type_id, Type.all, :id, :name %>
+    <%= f.label :member_number %><br>
+    <%= f.number_field :member_number %>
+  </div><br>
 
   <div class="field">
-    <h6>Members:</h6>
+    <%= f.label :type_id %>
+    <%= f.collection_select :type_id, Type.all, :id, :name %>
+  </div><br>
+  
+  <div class="field">
+    <h5>Members:</h5>
     <%= f.fields_for :members do |m| %>
       <%= m.label :name %>
-      <%= m.text_field :name %>
+      <%= m.text_field :name %><br>
       <%= m.label :position %>
       <%= m.text_field :position %>
     <% end %>

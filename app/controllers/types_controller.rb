@@ -1,5 +1,5 @@
 class TypesController < ApplicationController
-  before_action :authorize_logged_in
+  before_action :authenticate_user!
   
   def show
     @type = Type.find_by(id: params[:id])
