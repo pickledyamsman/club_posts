@@ -13,9 +13,11 @@ class ClubsController < ApplicationController
 
   def new
     @club = Club.new
+    3.times {@club.members.build}
   end
 
   def edit
+    3.times {@club.members.build}
   end
 
   def create
@@ -23,6 +25,7 @@ class ClubsController < ApplicationController
     if @club.save
       redirect_to club_path(@club), notice: 'Club was successfully created.'
     else
+      3.times {@club.members.build}
       render :new
     end
   end
@@ -59,6 +62,6 @@ class ClubsController < ApplicationController
         :member_number, 
         :type_id,
         :category_id,
-        members_attributes: [:name, :position])
+        members_attributes: [:id, :name, :position, :_destroy])
     end
 end

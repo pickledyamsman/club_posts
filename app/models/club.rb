@@ -4,18 +4,17 @@ class Club < ActiveRecord::Base
   belongs_to :type
   has_many :members
 
-  accepts_nested_attributes_for :members
+  accepts_nested_attributes_for :members, reject_if: proc { |attributes| attributes['name'].blank? }, allow_destroy: true
 
   validates :name, :presence => true
   validates :name, :uniqueness => true
   validates :description, :presence => true
 
-  def members_attributes=(member_attribute)
-    member = Member.find_or_create_by(member_attribute)
-    self.member = member
+  def member_attributes=(member_attribute)
+    member << Member.find_or_create_by(member_attribute)
   end
 
   def display_member(member)
-    "#{member.position} - #{member.name}"
+    "#{club.member.position} - #{club.member.name}"
   end
 end

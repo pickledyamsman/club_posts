@@ -35,9 +35,11 @@
     <h5>Members:</h5>
     <%= f.fields_for :members do |m| %>
       <%= m.label :name %>
-      <%= m.text_field :name %><br>
+      <%= m.text_field :name %>
       <%= m.label :position %>
       <%= m.text_field :position %>
+      <%= m.check_box :_destroy %>
+      <%= m.label :_destroy, 'remove' %><br>
     <% end %>
   </div>
 

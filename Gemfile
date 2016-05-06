@@ -27,6 +27,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'cancancan'
+gem 'pry-rails', :group => :development
 
 gem 'bootstrap', '~> 4.0.0.alpha3'
 # Use ActiveModel has_secure_password
