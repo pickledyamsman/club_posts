@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :clubs, only: [:index, :show]
+    resources :posts
   end
-
 
   root 'clubs#index'
 end

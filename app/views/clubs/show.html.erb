@@ -1,44 +1,51 @@
+
 <p id="notice"><%= notice %></p>
-
-<div class="info-container">
-  <p><strong>Name:</strong> <%= @club.name %></p>
-  <p><strong>Description:</strong> <%= @club.description %></p>
-  <p><strong>Number of Members:</strong> <%= @club.member_number %></p>
-  <p><strong>Club Type:</strong> <%= @club.type.name %></p>
-  
-  <p><strong>Members:</strong></p>
-  <% if @club.members.any? %>
-    <% @club.members.each do |member| %>
-      <%= member.position %> - <%= member.name %><br>
-    <% end %>
-  <% else %>
-    <p>No members</p>
-  <% end %>
-
-  <%= link_to 'Edit Club', edit_club_path(@club) %> |
-  <%= link_to 'Back', clubs_path %>
-</div>
 
 <div class="posts-container">
   <strong>Posts:</strong><br><br>
-  <% @club.try(:posts).each do |post| %>
+  <% @club.posts.each do |post| %>
     <h5><%= post.title %></h5>
     <p><%= post.content %></p>
     <h6>Posted by: <%= post.user.email %></h6>
+    <h6><%= post.created_at %></h6>
     <%= link_to 'Edit', edit_post_path(post) %>
     <%= link_to "delete", post_path(post.id), method: "DELETE" %>
     <br><br>
   <% end %>
 </div>
 
-<div class="new-post-container">
-  <strong>Add a new Post:</strong><br>
-    <%= form_for @club.posts.build, action: posts_path, method: 'post' do |f| %>
-      <%= f.hidden_field :club_id, value: @club.id %>
-      <h6>Title:</h6>
-      <%= f.text_field :title,  placeholder: "Add a title." %><br>
-      <h6>Content:</h6>
-      <%= f.text_area :content, placeholder: "Add some content." %>
-      <%= f.submit %>
-    <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <p><strong>Name:</strong> <%= @club.name %></p>
+      <p><strong>Description:</strong> <%= @club.description %></p>
+      <p><strong>Number of Members:</strong> <%= @club.member_number %></p>
+      <p><strong>Club Type:</strong> <%= @club.type.name %></p>
+      
+      <p><strong>Members:</strong></p>
+      <% if @club.members.any? %>
+        <% @club.members.each do |member| %>
+          <%= member.position %> - <%= member.name %><br>
+        <% end %>
+      <% else %>
+        <p>No members</p>
+      <% end %>
+
+      <%= link_to 'Edit Club', edit_club_path(@club) %> |
+      <%= link_to 'Back', clubs_path %>
+    </div>
+
+    <div class="col-sm-6">
+      <strong>Add a new Post:</strong><br>
+        <%= form_for @club.posts.build, action: posts_path, method: 'post' do |f| %>
+          <%= f.hidden_field :club_id, value: @club.id %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <h6>Title:</h6>
+          <%= f.text_field :title,  placeholder: "Add a title." %><br>
+          <h6>Content:</h6>
+          <%= f.text_area :content, placeholder: "Add some content." %>
+          <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -1,8 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  #skip_load_and_authorize_resource
-
 
   def index
     @posts = Post.all
@@ -10,7 +8,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.user = current_user
+    @post.user_id = current_user.id
     if @post.save
       redirect_to club_path(@post.club), notice: "Your post was successful!"
     else
@@ -20,6 +18,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.user_id = current_user.id
   end
 
   def edit

@@ -28,4 +28,15 @@
 
 <br>
 
-<%= link_to 'New Club', new_club_path %>
+<%= link_to 'New Club', new_club_path %><br><br>
+
+<h3>My Posts:</h3>
+<% if !current_user.posts.empty? %>
+  <% current_user.posts.each do |post| %>
+    <strong><%= post.title %> in <%= post.club.name %></strong><br>
+    <%= post.content %><br>
+    <br>
+  <% end %>
+<% else %>
+  <p>You don't have any posts yet.</p>
+<% end %>
