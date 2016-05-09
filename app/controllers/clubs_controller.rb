@@ -62,7 +62,6 @@ class ClubsController < ApplicationController
         :member_number, 
         :type_id,
         :posts,
-        :category_id,
         members_attributes: [:id, :name, :position, :_destroy])
     end
 end
