@@ -25,7 +25,7 @@
       <p><strong>Members:</strong></p>
       <% if @club.members.any? %>
         <% @club.members.each do |member| %>
-          <%= member.position %> - <%= member.name %><br>
+          <strong><%= member.position %></strong> - <%= member.name %><br>
         <% end %>
       <% else %>
         <p>No members</p>

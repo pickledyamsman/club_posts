@@ -13,8 +13,4 @@ class Club < ActiveRecord::Base
   def member_attributes=(member_attribute)
     member << Member.find_or_create_by(member_attribute)
   end
-
-  def display_member(member)
-    "#{club.member.position} - #{club.member.name}"
-  end
 end

@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to club_path(@post.club), notice: "Your post was successful!"
     else
-      redirect_to :back
+      redirect_to :back, alert: "Couldn't make your post."
     end
   end
 
