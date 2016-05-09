@@ -44,13 +44,14 @@ textarea {
 }
 
 .posts-container {
-  float: right;
   padding: 2em;
-  margin-right: 19em;
+  margin: 0 auto;
+  width: 100%;
+  clear: both;
 }
 
-.new-post-container {
-
+.posts-container p {
+  text-align: left;
 }
 
 th {
