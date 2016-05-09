@@ -1,5 +1,6 @@
-<h1><%= @type.name %></h1>
+<h1><%= @type.name %> Clubs</h1>
 
 <% @type.clubs.each do |club| %>
-  <%= link_to club.name, club_path(club) %>
+  <h3><%= link_to club.name, club_path(club) %></h3>
+  <p><%= club.member_number %> members.</p><br>
 <% end %>

@@ -6,8 +6,9 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Description</th>
+      <th>Club Type</th>
       <th>Members</th>
+      <th>Description</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,8 +17,9 @@
     <% @clubs.each do |club| %>
       <tr>
         <td><%= link_to club.name, club_path(club)  %></td>
-        <td><%= club.description %></td>
+        <td><%= link_to club.type.name, type_path(club.type) %></td>
         <td><%= club.member_number %></td>
+        <td><%= club.description %></td>
         <td><%= link_to 'Show', club %></td>
         <td><%= link_to 'Edit', edit_club_path(club) %></td>
         <td><%= link_to 'Destroy', club, method: :delete, data: { confirm: 'Are you sure?' } %></td>
