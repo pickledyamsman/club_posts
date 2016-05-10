@@ -7,10 +7,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
+    @post = Post.create(post_params)
     if @post.save
-      redirect_to club_path(@post.club), notice: "Your post was successful!"
+      render json: @post, status: 201, notice: "Your post was successful!"
     else
       redirect_to :back, alert: "Couldn't make your post."
     end
@@ -33,11 +32,21 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    respond_to do |format|
+      format.html { render :show}
+      format.json { render json: @post }
+    end
   end
 
   def destroy
     @post.destroy
     redirect_to club_path(@post.club), notice: "Your post successfuly deleted!"
+  end
+
+  def post_data
+    post = Post.find(params[:id])
+    render json: post.to_json(only: [:title, :content, :id])
   end
 
   private

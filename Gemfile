@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-
+gem 'pry'
+gem 'pry-nav'
+gem 'active_model_serializers'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
@@ -42,6 +44,11 @@ gem 'bootstrap', '~> 4.0.0.alpha3'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'faker'
+  gem 'shoulda'
+  gem 'selenium-webdriver'
 end
 
 group :development do

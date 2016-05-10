@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   end
 
   root 'clubs#index'
+
+  get 'posts/:id/post_data', to: 'posts#post_data'
 end
