@@ -1,6 +1,12 @@
 <h5><%= post.title %></h5>
 
-<div id="content-<%= post.id %>"><%= truncate post.content %></div>
+<div id="content-<%= post.id %>">
+  <% if post.content.length > 10 %>
+    <%= truncate post.content %>
+  <% else %>
+    <%= post.content %>
+  <% end %>
+</div>
 <button class="js-more" data-id="<%= post.id %>">More...</button>
 
 <h6>Posted by: <%= post.user.email %></h6>
