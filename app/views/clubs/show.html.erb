@@ -33,27 +33,6 @@
           <%= f.text_area :content, placeholder: "Add some content." %>
           <%= f.submit %>
         <% end %>
-
-<!--         <div id="postResult">
-          <h2 id="postTitle"></h2>
-          <p id="postContent"></p>
-        </div> -->
-
-        <script type="text/javascript" charset="utf-8">
-          $(function() {
-            $('form').submit(function(event) {
-              //prevent form from submitting the default way
-              event.preventDefault();
-              var values = $(this).serialize();
-              var posting = $.post('/posts', values);
-              posting.done(function(data) {
-                var post = data["post"];
-                $("#postTitle").text(post["title"]);
-                $("#postContent").text(post["content"]);
-              });
-            });
-          });
-        </script>
     </div>
   </div>
 </div>
@@ -63,13 +42,13 @@
   <% if @club.posts.empty? %>
     <p>There are no posts yet.</p>
   <% else %>
-    <% @club.posts.reverse_each do |post| %>
-      <%= render partial: "posts/post", locals: {post: post} %>
-    <% end %>
     <div id="postResult">
       <h2 id="postTitle"></h2>
       <p id="postContent"></p>
     </div>
+    <% @club.posts.reverse_each do |post| %>
+      <%= render partial: "posts/post", locals: {post: post} %>
+    <% end %>
   <% end %>
 </div>
 
@@ -80,6 +59,19 @@
       $.get("/posts/" + id + "/post_data", function(data) {
         // Replace text of body-id div
         $("#content-" + id).html(data["content"]);
+      });
+    });
+  });
+  $(function() {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+      var values = $(this).serialize();
+      var posting = $.post('/posts', values);
+      posting.done(function(data) {
+        var post = data["post"];
+        $("#postTitle").text(post["title"]);
+        $("#postContent").text(post["content"]);
       });
     });
   });

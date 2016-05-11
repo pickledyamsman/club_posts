@@ -1,13 +1,13 @@
 <h5><%= post.title %></h5>
 
 <div id="content-<%= post.id %>">
-  <% if post.content.length > 10 %>
+  <% if post.content.length > 17 %>
     <%= truncate post.content %>
+    <button class="js-more" data-id="<%= post.id %>">More...</button>
   <% else %>
     <%= post.content %>
   <% end %>
 </div>
-<button class="js-more" data-id="<%= post.id %>">More...</button>
 
 <h6>Posted by: <%= post.user.email %></h6>
 <h6><%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %></h6>
