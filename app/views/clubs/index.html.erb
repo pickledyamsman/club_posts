@@ -35,6 +35,7 @@
 <h3>My Posts:</h3>
 <% if !current_user.posts.empty? %>
   <% current_user.posts.reverse_each do |post| %>
+    <p>Club: <%= post.club.name %></p>
     <%= render partial: "posts/post", locals: {post: post} %>
     <br>
   <% end %>
