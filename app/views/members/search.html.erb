@@ -1,0 +1,4 @@
+<%= form_tag "/members/search", method: "get" do %>
+  <%= text_field_tag :position, params[:position] %>
+  <%= submit_tag("Search") %>
+<% end %>

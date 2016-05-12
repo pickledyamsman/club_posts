@@ -1,0 +1,6 @@
+<div>
+  <h1>All of the <%= params[:position] %>'s</h1>
+  <% @results.each do |member|%>
+    <p><%= member.name %> from <%= member.club.name %></p>
+  <% end %>
+</div>
