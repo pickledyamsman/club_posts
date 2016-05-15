@@ -1,0 +1,6 @@
+<div>
+  <h1>All of the clubs with <%= params[:position] %> or more members.</h1>
+  <% @results.each do |member|%>
+    <p><%= club.name %> with <%= club.member_number %></p>
+  <% end %>
+</div>

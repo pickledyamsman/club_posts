@@ -7,7 +7,6 @@ class ClubsController < ApplicationController
   end
 
   def show
-    @club = Club.find(params[:id])
   end
 
   def new
@@ -46,6 +45,14 @@ class ClubsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to clubs_url, notice: 'Club was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def popular_clubs
+    if params[:popularity]
+      @clubs = Club.popular?(params[:popularity])
+    else
+      @clubs
     end
   end
 

@@ -1,0 +1,14 @@
+<%= form_tag(popular_clubs_path, method: "get", id: "popular-form") do %>
+  <h3>How many members should a club have to be popular?</h3>
+  <%= text_field_tag :popularity, params[:popularity] %>
+  <%= submit_tag "Submit" %>
+<% end %>
+
+<% if @clubs.present? %>
+  <h1>All of the clubs with <%= params[:popularity] %> or more members.</h1>
+  <% @clubs.each do |club|%>
+    <p><%= club.name %> with <%= club.member_number %> members.</p>
+  <% end %>
+<% else %>
+  <p>There are no clubs that have <%= params[:popularity] %> or more members.</p>
+<% end %>

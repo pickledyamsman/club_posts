@@ -1,6 +1,6 @@
 <div>
   <h1>All of the <%= params[:position] %>'s</h1>
   <% @results.each do |member|%>
-    <p><%= member.name %> from <%= member.club.name %></p>
+    <p><%= member.name %> from <%= link_to member.club.name, club_path(member.club) %></p>
   <% end %>
 </div>

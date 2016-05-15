@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   root 'clubs#index'
 
   get '/search', to: 'members#search'
+  get '/popular_clubs', to: 'clubs#popular_clubs'
 end

@@ -13,4 +13,8 @@ class Club < ActiveRecord::Base
   def member_attributes=(member_attribute)
     member << Member.find_or_create_by(member_attribute)
   end
+
+  def self.popular?(pop)
+    where("member_number >= ?", pop)
+  end
 end

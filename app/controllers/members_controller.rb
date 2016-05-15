@@ -1,6 +1,5 @@
 class MembersController < ApplicationController
   def search
-    
   end
 
   def show
