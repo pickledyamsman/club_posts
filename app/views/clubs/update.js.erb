@@ -1,0 +1,2 @@
+$('form').hide();
+$('div#<%= dom_id(@club) %>').replaceWith('<%= j render partial: "club", locals: {club: @club} %>');

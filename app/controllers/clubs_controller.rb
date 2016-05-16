@@ -1,9 +1,11 @@
 class ClubsController < ApplicationController
   before_action :set_club, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  respond_to :html, :js
 
   def index
     @clubs = Club.all
+    respond_with(@clubs)
   end
 
   def show
@@ -13,6 +15,7 @@ class ClubsController < ApplicationController
   def new
     @club = Club.new
     3.times {@club.members.build}
+    respond_with(@club)
   end
 
   def edit
@@ -21,32 +24,18 @@ class ClubsController < ApplicationController
 
   def create
     @club = Club.new(club_params)
-    if @club.save
-      redirect_to club_path(@club), notice: 'Club was successfully created.'
-    else
-      3.times {@club.members.build}
-      render :new
-    end
+    flash[:notice] = 'Club was successfully created.' if @club.save
+    respond_with(@club)
   end
 
   def update
-    respond_to do |format|
-      if @club.update(club_params)
-        format.html { redirect_to @club, notice: 'Club was successfully updated.' }
-        format.json { render :show, status: :ok, location: @club }
-      else
-        format.html { render :edit }
-        format.json { render json: @club.errors, status: :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'Club successfully updated.' if @club.update(club_params)
+    respond_with(@club)
   end
 
   def destroy
     @club.destroy
-    respond_to do |format|
-      format.html { redirect_to clubs_url, notice: 'Club was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    respond_with(@club)
   end
 
   private

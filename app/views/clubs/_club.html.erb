@@ -1,0 +1,13 @@
+<%= div_for club do %>
+  <div class="panel">
+    <p><strong>Name:</strong> <%= link_to club.name, club_path(club) %></p>
+    <p><strong>Description:</strong> <%= club.description %></p>
+    <p><strong>Number of Members:</strong> <%= club.member_number %></p>
+    <p><strong>Club Type:</strong> <%= link_to club.type.name, type_path(club.type) %>
+    </p>
+
+    <%= link_to 'Edit Club', edit_club_path(club), remote: true %> |
+    <%= link_to 'Delete Club', club, remote: true, method: :delete %>
+    <hr><br>
+  </div>
+<% end %>

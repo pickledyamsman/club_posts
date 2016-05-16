@@ -2,35 +2,16 @@
 
 <h1>Listing Clubs</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Club Type</th>
-      <th>Members</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="all-clubs">
+  <% @clubs.each do |club| %>
+    <%= render club %>
+  <% end %>
+</div>
 
-  <tbody>
-    <% @clubs.each do |club| %>
-      <tr>
-        <td><%= link_to club.name, club_path(club)  %></td>
-        <td><%= link_to club.type.name, type_path(club.type) %></td>
-        <td><%= club.member_number %></td>
-        <td><%= club.description %></td>
-        <td><%= link_to 'Show', club %></td>
-        <td><%= link_to 'Edit', edit_club_path(club) %></td>
-        <td><%= link_to 'Destroy', club, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="new-club-form">
+  <%= link_to 'New Club', new_club_path, remote: true, class: "new-club-button" %><br><br>
+</div>
 
-<br>
-
-<%= link_to 'New Club', new_club_path %><br><br>
 
 <h3>My Posts:</h3>
 <% if !current_user.posts.empty? %>

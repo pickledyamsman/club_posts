@@ -1,0 +1,3 @@
+$('form').hide();
+$('.all-clubs').find('.panel').append('<%= j render partial: “club”, locals: {club: @club} %>');
+$('.new-club-button').show();
