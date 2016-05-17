@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    flash[:notice] = 'Club successfully updated.' if @post.update(post_params)
+    flash[:notice] = 'Post successfully updated.' if @post.update(post_params)
     respond_with(@post)
   end
 
@@ -32,8 +32,13 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
+    flash[:notice] = 'Post successfully deleted.' if @post.destroy
     respond_with(@post)
+  end
+
+  def post_data
+    post = Post.find(params[:id])
+    render json: post.to_json(only: [:title, :content, :id])
   end
 
   private
@@ -50,3 +55,6 @@ class PostsController < ApplicationController
       )
     end
 end
+
+# May remove flash[:notices] or find another way, because they only show on
+# refresh somewhat defeats the purpose if you edit mulitiple posts. 

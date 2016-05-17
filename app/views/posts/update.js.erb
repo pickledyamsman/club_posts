@@ -1,2 +1,1 @@
-$('form').hide();
 $('div#<%= dom_id(@post) %>').replaceWith('<%= j render partial: "post", locals: {post: @post} %>');

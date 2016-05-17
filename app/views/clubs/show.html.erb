@@ -34,13 +34,11 @@
   <% if @club.posts.empty? %>
     <p>There are no posts yet.</p>
   <% else %>
-    <div id="postResult">
-      <h2 id="postTitle"></h2>
-      <p id="postContent"></p>
+    <div class="posts">
+      <% @club.posts.reverse_each do |post| %>
+        <%= render partial: "posts/post", locals: {post: post} %>
+      <% end %>
     </div>
-    <% @club.posts.reverse_each do |post| %>
-      <%= render partial: "posts/post", locals: {post: post} %>
-    <% end %>
   <% end %>
 </div>
 

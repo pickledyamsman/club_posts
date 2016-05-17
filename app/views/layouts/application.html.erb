@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>ClubPosts</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -22,19 +22,6 @@
         $.get("/posts/" + id + "/post_data", function(data) {
           // Replace text of body-id div
           $("#content-" + id).html(data["content"]);
-        });
-      });
-    });
-    $(function() {
-      $('form').submit(function(event) {
-        //prevent form from submitting the default way
-        event.preventDefault();
-        var values = $(this).serialize();
-        var posting = $.post('/posts', values);
-        posting.done(function(data) {
-          var post = data["post"];
-          $("#postTitle").text(post["title"]);
-          $("#postContent").text(post["content"]);
         });
       });
     });
