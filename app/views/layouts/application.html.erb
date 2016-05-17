@@ -15,5 +15,29 @@
 
   <%= yield %>
 
+  <script type="text/javascript" charset="urf-8">
+    $(function () {
+      $(".js-more").on('click', function() {
+        var id = $(this).data("id");
+        $.get("/posts/" + id + "/post_data", function(data) {
+          // Replace text of body-id div
+          $("#content-" + id).html(data["content"]);
+        });
+      });
+    });
+    $(function() {
+      $('form').submit(function(event) {
+        //prevent form from submitting the default way
+        event.preventDefault();
+        var values = $(this).serialize();
+        var posting = $.post('/posts', values);
+        posting.done(function(data) {
+          var post = data["post"];
+          $("#postTitle").text(post["title"]);
+          $("#postContent").text(post["content"]);
+        });
+      });
+    });
+  </script>
 </body>
 </html>

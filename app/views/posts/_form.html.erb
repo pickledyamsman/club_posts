@@ -1,24 +1,9 @@
-<%= form_for(@post) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@club.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title, placeholder: "Add a title." %>
-    <h5>Content:</h5>
-    <%= f.text_area :content, placeholder: "Add some content." %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= form_for Post.new, action: posts_path, remote: true, method: 'post' do |f| %>
+  <%= f.hidden_field :club_id, value: club.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <h6>Title:</h6>
+  <%= f.text_field :title,  placeholder: "Add a title." %><br>
+  <h6>Content:</h6>
+  <%= f.text_area :content, placeholder: "Add some content." %>
+  <%= f.submit %>
 <% end %>

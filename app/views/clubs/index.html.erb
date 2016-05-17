@@ -11,27 +11,14 @@
 <div class="new-club-form">
   <%= link_to 'New Club', new_club_path, remote: true, class: "new-club-button" %><br><br>
 </div>
-
+<hr>
 
 <h3>My Posts:</h3>
 <% if !current_user.posts.empty? %>
   <% current_user.posts.reverse_each do |post| %>
     <p>Club: <%= post.club.name %></p>
     <%= render partial: "posts/post", locals: {post: post} %>
-    <br>
   <% end %>
 <% else %>
   <p>You don't have any posts yet.</p>
 <% end %>
-
-<script type="text/javascript" charset="urf-8">
-  $(function () {
-    $(".js-more").on('click', function() {
-      var id = $(this).data("id");
-      $.get("/posts/" + id + "/post_data", function(data) {
-        // Replace text of body-id div
-        $("#content-" + id).html(data["content"]);
-      });
-    });
-  });
-</script>
