@@ -1,16 +1,20 @@
-<h5><%= post.title%></h5>
+<%= div_for post do %>
+  <div class="post-panel">
+    <h5><%= post.title%></h5>
 
-<div id="content-<%= post.id %>">
-  <% if post.content.length > 17 %>
-    <%= truncate post.content %>
-    <button class="js-more" data-id="<%= post.id %>">More...</button>
-  <% else %>
-    <%= post.content %>
-  <% end %>
-</div>
+    <div id="content-<%= post.id %>">
+      <% if post.content.length > 17 %>
+        <%= truncate post.content %>
+        <button class="js-more" data-id="<%= post.id %>">More...</button>
+      <% else %>
+        <%= post.content %>
+      <% end %>
+    </div>
 
-<h6>Posted by: <%= post.user.email %></h6>
-<h6><%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %></h6>
-<%= link_to 'Edit', edit_post_path(post) %> |
-<%= link_to "delete", post_path(post.id), method: "DELETE" %>
-<hr>
+    <h6>Posted by: <%= post.user.email %></h6>
+    <h6><%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %></h6>
+    <%= link_to 'Edit', edit_post_path(post), remote: true %> |
+    <%= link_to "delete", post, remote: true, method: "DELETE" %>
+    <hr>
+  </div>
+<% end %>
