@@ -3,11 +3,7 @@ class MembersController < ApplicationController
   end
 
   def show
-    @results = []
-    Member.all.each do |member|
-      if member.position.downcase == params[:position].downcase
-        @results << member
-      end
-    end
+    @members = Member.search(params[:position])
+    @position = params[:position]
   end
 end

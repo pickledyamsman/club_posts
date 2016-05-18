@@ -9,7 +9,7 @@
       <p><strong>Number of Members:</strong> <%= @club.member_number %></p>
       <p><strong>Club Type:</strong> <%= link_to @club.type.name, type_path(@club.type) %></p>
       
-      <p><strong>Members:</strong></p>
+      <p><strong>Club Leaders:</strong></p>
       <% if @club.members.any? %>
         <% @club.members.each do |member| %>
           <strong><%= member.position %></strong> - <%= member.name %><br>

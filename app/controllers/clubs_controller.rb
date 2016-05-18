@@ -49,11 +49,7 @@ class ClubsController < ApplicationController
   end
 
   def popular_clubs
-    if params[:popularity]
-      @clubs = Club.popular?(params[:popularity])
-    else
-      @clubs
-    end
+    @clubs = Club.popular?(params[:popularity])
   end
 
   private

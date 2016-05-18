@@ -7,7 +7,8 @@
 <% if @clubs.present? %>
   <h1>All of the clubs with <%= params[:popularity] %> or more members.</h1>
   <% @clubs.each do |club|%>
-    <p><%= club.name %> with <%= club.member_number %> members.</p>
+    <p><%= link_to club.name, club_path(club) %>
+    with <%= club.member_number %> members.</p>
   <% end %>
 <% else %>
   <p>There are no clubs that have <%= params[:popularity] %> or more members.</p>
