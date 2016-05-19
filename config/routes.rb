@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :types
+  resources :types, only: [:show, :new, :index, :create]
   resources :members
   resources :posts
   resources :clubs

@@ -1,17 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Clubs</h1>
+<div class="new-club-form">
+  <button class="btn"><%= link_to 'Create a new club', new_club_path, remote: true, class: "new-club-button" %></button><br><br>
+</div>
+<hr>
+
+<button class="btn"><%= link_to "Manage the types of clubs.", types_path %></button>
+<hr>
 
 <div class="all-clubs">
+  <h1>Listing Clubs</h1>
   <% @clubs.each do |club| %>
     <%= render club %>
   <% end %>
 </div>
-
-<div class="new-club-form">
-  <%= link_to 'New Club', new_club_path, remote: true, class: "new-club-button" %><br><br>
-</div>
-<hr>
 
 <h3>My Posts:</h3>
 <% if !current_user.posts.empty? %>

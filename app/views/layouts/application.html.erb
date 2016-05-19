@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>ClubPosts</title>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -23,6 +23,11 @@
           // Replace text of body-id div
           $("#content-" + id).html(data["content"]);
         });
+      });
+    });
+    $(function () {
+      $("#create-type-btn").click(function() {
+        $("#create-form").toggle();
       });
     });
   </script>

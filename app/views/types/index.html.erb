@@ -1,0 +1,16 @@
+<div id="message"></div>
+<h2>Types</h2>
+
+<p><button id="types-btn" class="btn">Show Club Types</button></p>
+<div id="types">
+</div>
+
+
+<h3>Create a new type of club.</h3>
+  <%= form_for @type, remote: true do |f| %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+    <%= f.submit %>
+  <% end %>
+
+

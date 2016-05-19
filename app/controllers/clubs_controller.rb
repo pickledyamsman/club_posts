@@ -1,7 +1,7 @@
 class ClubsController < ApplicationController
   before_action :set_club, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  respond_to :html, :js
+  respond_to :html, :js, :json
 
   def index
     @clubs = Club.all
@@ -10,6 +10,10 @@ class ClubsController < ApplicationController
 
   def show
     @club = Club.find(params[:id])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @club }
+    end
   end
 
   def new

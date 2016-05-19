@@ -11,7 +11,39 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-
-//= require_tree .
+//= require turbolinks
 //= require bootstrap-sprockets
+
+
+// listeners
+function attachListeners() {
+  $("#types-btn").click(function(){
+    showTypes();
+  });
+
+}
+
+// shows the types of clubs
+function showTypes() {
+  $.get("/types.json", function(response){
+    var html = '<ul">';
+    var types = response.types;
+    $.each(types, function(index, type){
+      html += '<li><a href="/types/' + type.id + '" >' + type.name + ': with ' + type.clubs.length + ' clubs</a></li>';
+    });
+    html += '</ul>';
+    $("div#types").html(html);
+  });
+}
+
+// gives success message at the top of the page when the type is created.
+function newTypeMessage(type) {
+  $("div#message").html('<p>' + type + ' successfully created</p>');
+}
+
+// document ready
+$(document).ready(function() {
+  attachListeners();
+});
