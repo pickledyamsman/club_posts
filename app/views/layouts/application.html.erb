@@ -7,29 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
   <header>
     <%= render 'layouts/header' %>
   </header>
     
-
   <%= yield %>
 
-  <script type="text/javascript" charset="urf-8">
-    $(function () {
-      $(".js-more").on('click', function() {
-        var id = $(this).data("id");
-        $.get("/posts/" + id + "/post_data", function(data) {
-          // Replace text of body-id div
-          $("#content-" + id).html(data["content"]);
-        });
-      });
-    });
-    $(function () {
-      $("#create-type-btn").click(function() {
-        $("#create-form").toggle();
-      });
-    });
-  </script>
 </body>
 </html>

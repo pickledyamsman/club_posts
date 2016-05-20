@@ -22,7 +22,20 @@ function attachListeners() {
   $("#types-btn").click(function(){
     showTypes();
   });
-
+  $(".js-more").on('click', function() {
+    var id = $(this).data("id");
+    showMore(id);
+  });
+  $("#next-club").click(function() {
+    var currentId = parseInt($("current-club").attr("data-id"));
+    var nextId = getNextId(currentId);
+    getClub(nextId);
+  });
+  $("#previous-club").click(function() {
+    var currentId = parseInt($("#current-club").attr("data-id"));
+    var prevId = getPrevId(currentId);
+    getClub(prevId);
+  });
 }
 
 // shows the types of clubs
@@ -42,6 +55,26 @@ function showTypes() {
 function newTypeMessage(type) {
   $("div#message").html('<p>' + type + ' successfully created</p>');
 }
+
+// posts that are over 17 characters are truncated. This lets the button
+// replace truncated text with full text.
+function showMore(id) {
+  $.get("/posts/" + id + "/post_data", function(data) {
+    // Replace text of body-id div
+    $("#content-" + id).html(data["content"]);
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
 
 // document ready
 $(document).ready(function() {
