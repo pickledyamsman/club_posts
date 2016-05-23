@@ -33,12 +33,12 @@ function attachListeners() {
 // shows the types of clubs
 function showTypes() {
   $.get("/types.json", function(response){
-    var html = '<ul">';
+    var html = '';
     var types = response.types;
     $.each(types, function(index, type){
-      html += '<li><a href="/types/' + type.id + '" >' + type.name + ': with ' + type.clubs.length + ' clubs</a></li>';
+      createType = new Type(type.id, type.name, type.clubs.length);
+      html += createType.format();
     });
-    html += '</ul>';
     $("div#types").html(html);
   });
 }
@@ -51,6 +51,19 @@ function showMore(id) {
     $("#content-" + id).html(data["content"]);
   });
 }
+
+// type builder
+function Type(id, name, clubs) {
+  this.id = id;
+  this.name = name;
+  this.clubs_length = clubs;
+}
+
+// type formatter prototype
+Type.prototype.format = function() {
+  var html = '<a href="/types/' + this.id + '" >' + this.name + ': with ' + this.clubs_length + ' clubs</a><br>';
+  return html; 
+};
 
 // document ready
 $(document).ready(function() {
