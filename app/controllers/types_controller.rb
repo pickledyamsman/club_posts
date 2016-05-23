@@ -19,7 +19,7 @@ class TypesController < ApplicationController
     if @type.save
       respond_to do |format|
         format.html { render :show }
-        format.json { render json: @type, status: 201}
+        format.json { render json: @type}
         format.js {}
       end
     else
@@ -34,22 +34,6 @@ class TypesController < ApplicationController
       format.json { render json: @type }
       format.js {}
     end
-  end
-
-  def edit
-  end
-
-  def update
-    if @type.update(type_params)
-      redirect_to types_path
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @type.destroy
-    redirect_to types_path
   end
 
   private
