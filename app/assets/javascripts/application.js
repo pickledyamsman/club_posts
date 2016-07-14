@@ -57,12 +57,12 @@ function Type(id, name, clubs) {
   this.id = id;
   this.name = name;
   this.clubs_length = clubs;
+  this.format = function() {return html = '<a href="/types/' + this.id + '" >' + this.name + ': with ' + this.clubs_length + ' clubs</a><br>';};
 }
 
 // type formatter prototype
 Type.prototype.format = function() {
-  var html = '<a href="/types/' + this.id + '" >' + this.name + ': with ' + this.clubs_length + ' clubs</a><br>';
-  return html; 
+  return var html = '<a href="/types/' + this.id + '" >' + this.name + ': with ' + this.clubs_length + ' clubs</a><br>';
 };
 
 // document ready
