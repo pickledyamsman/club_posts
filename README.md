@@ -35,7 +35,9 @@ There are currently no tests for this app. They will be added using rake at a la
 ### Built With
 
 Rails - for backend router handling
+
 jQuery - for responsive buttons and forms
+
 Devise - for user login, registration, and authorization
 
 
